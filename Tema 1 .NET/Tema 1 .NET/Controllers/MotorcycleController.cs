@@ -42,9 +42,9 @@ namespace Tema_1_.NET.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<List<Motorcycle>>> UpdateHero(Motorcycle request)
+        public async Task<ActionResult<List<Motorcycle>>> UpdateMotorcycle(Motorcycle request)
         {
-            var result = _motorcycleService.UpdateHero(request);
+            var result = _motorcycleService.UpdateMotorcycle(request);
 
             if (result is null)
             {
