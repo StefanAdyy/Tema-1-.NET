@@ -8,16 +8,16 @@ namespace Tema_1_.NET.Services.MotorcycleService
         private readonly MotorcycleRepository _motorcycleRepository;
         public MotorcycleService(MotorcycleRepository motorcycleRepository)
         {
-            _motorcycleRepository=motorcycleRepository;
+            _motorcycleRepository = motorcycleRepository;
         }
 
-        public List<Motorcycle> AddMotorcycle(Motorcycle motorcycle)
+        public async Task<List<Motorcycle>> AddMotorcycle(Motorcycle motorcycle)
         {
             _motorcycleRepository.AddMotorcycle(motorcycle);
             return _motorcycleRepository.GetAllMotorcycles();
         }
 
-        public List<Motorcycle>? DeleteMotorcycle(int id)
+        public async Task<List<Motorcycle>?> DeleteMotorcycle(int id)
         {
             var result = _motorcycleRepository.GetMotorcycleById(id);
 
@@ -31,12 +31,12 @@ namespace Tema_1_.NET.Services.MotorcycleService
             return _motorcycleRepository.GetAllMotorcycles();
         }
 
-        public List<Motorcycle> GetAllMotorcycles()
+        public async Task<List<Motorcycle>> GetAllMotorcycles()
         {
             return _motorcycleRepository.GetAllMotorcycles();
         }
 
-        public Motorcycle? GetMotorcycleById(int id)
+        public async Task<Motorcycle?> GetMotorcycleById(int id)
         {
             var result = _motorcycleRepository.GetMotorcycleById(id);
 
@@ -48,7 +48,7 @@ namespace Tema_1_.NET.Services.MotorcycleService
             return result;
         }
 
-        public List<Motorcycle>? UpdateMotorcycle(Motorcycle request)
+        public async Task<List<Motorcycle>?> UpdateMotorcycle(Motorcycle request)
         {
             var result = _motorcycleRepository.GetMotorcycleById(request.Id);
 

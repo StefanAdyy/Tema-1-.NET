@@ -18,17 +18,17 @@ namespace Tema_1_.NET.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Motorcycle>>> GetAllMotorcycles()
         {
-            return _motorcycleService.GetAllMotorcycles();
+            return await _motorcycleService.GetAllMotorcycles();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Motorcycle>> GetMotorcycleById(int id)
         {
-            var result = _motorcycleService.GetMotorcycleById(id);
+            var result = await _motorcycleService.GetMotorcycleById(id);
 
             if(result is null)
             {
-                return NotFound("Sorry, this motorcycle doesn't exist");
+                return  NotFound("Sorry, this motorcycle doesn't exist");
             }
 
             return Ok(result);
@@ -37,14 +37,14 @@ namespace Tema_1_.NET.Controllers
         [HttpPost]
         public async Task<ActionResult<List<Motorcycle>>> AddMotorcycle(Motorcycle motorcycle)
         {
-            var result = _motorcycleService.AddMotorcycle(motorcycle);
+            var result = await _motorcycleService.AddMotorcycle(motorcycle);
             return Ok(result);
         }
 
         [HttpPut]
         public async Task<ActionResult<List<Motorcycle>>> UpdateMotorcycle(Motorcycle request)
         {
-            var result = _motorcycleService.UpdateMotorcycle(request);
+            var result = await _motorcycleService.UpdateMotorcycle(request);
 
             if (result is null)
             {
@@ -57,7 +57,7 @@ namespace Tema_1_.NET.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Motorcycle>> DeleteMotorcycle(int id)
         {
-            var result = _motorcycleService.DeleteMotorcycle(id);
+            var result = await _motorcycleService.DeleteMotorcycle(id);
 
             if (result == null)
             {
