@@ -1,89 +1,71 @@
 ﻿using Tema_1_.NET.Entities;
+using Tema_1_.NET.Repositories;
 
 namespace Tema_1_.NET.Services.MotorcycleService
 {
     public class MotorcycleService : IMotorcycleService
     {
-         private static List<Motorcycle> motorcycleList = new List<Motorcycle>
+        private readonly MotorcycleRepository _motorcycleRepository;
+        public MotorcycleService(MotorcycleRepository motorcycleRepository)
         {
-            new Motorcycle
-                {
-                    Id = 1,
-                    ManufacturerId = 1,
-                    Model = "GSX-R 1000",
-                    Year = 2009,
-                    HorsePower = 185,
-                    Torque = 117,
-                    EngineDisplacement = 999,
-                    TankCapacity = 17
-                },
-                new Motorcycle
-                {
-                    Id = 2,
-                    ManufacturerId = 1,
-                    Model = "GS 500 F",
-                    Year = 2006,
-                    HorsePower = 47,
-                    Torque = 41,
-                    EngineDisplacement = 487,
-                    TankCapacity = 20
-                }
-        };
+            _motorcycleRepository=motorcycleRepository;
+        }
 
         public List<Motorcycle> AddMotorcycle(Motorcycle motorcycle)
         {
-            motorcycleList.Add(motorcycle);
-            return motorcycleList;
+            _motorcycleRepository.AddMotorcycle(motorcycle);
+            return _motorcycleRepository.GetAllMotorcycles();
         }
 
         public List<Motorcycle>? DeleteMotorcycle(int id)
         {
-            var motorcycle = motorcycleList.Find(x => x.Id == id);
+            var result = _motorcycleRepository.GetMotorcycleById(id);
 
-            if (motorcycle is null)
+            if (result is null)
             {
                 return null;
             }
 
-            motorcycleList.Remove(motorcycle);
-            return motorcycleList;
+            _motorcycleRepository.DeleteMotorcycle(id);
+
+            return _motorcycleRepository.GetAllMotorcycles();
         }
 
         public List<Motorcycle> GetAllMotorcycles()
         {
-            return motorcycleList;
+            return _motorcycleRepository.GetAllMotorcycles();
         }
 
         public Motorcycle? GetMotorcycleById(int id)
         {
-            var motorcycle = motorcycleList.Find(x => x.Id == id);
+            var result = _motorcycleRepository.GetMotorcycleById(id);
 
-            if (motorcycle is null)
+            if (result is null)
             {
                 return null;
             }
 
-            return motorcycle;
+            return result;
         }
 
-        public List<Motorcycle>? UpdateHero(Motorcycle request)
+        public List<Motorcycle>? UpdateMotorcycle(Motorcycle request)
         {
-            var motorcycle = motorcycleList.Find(x => x.Id == request.Id);
+            var result = _motorcycleRepository.GetMotorcycleById(request.Id);
 
-            if (motorcycle is null)
+            if (result is null)
             {
                 return null;
             }
 
-            motorcycle.ManufacturerId = request.ManufacturerId;
-            motorcycle.Model = request.Model;
-            motorcycle.Year = request.Year;
-            motorcycle.HorsePower = request.HorsePower;
-            motorcycle.Torque = request.Torque;
-            motorcycle.EngineDisplacement = request.EngineDisplacement;
-            motorcycle.TankCapacity = request.TankCapacity;
+            result.ManufacturerId = request.ManufacturerId;
+            result.Model = request.Model;
+            result.Year = request.Year;
+            result.HorsePower = request.HorsePower;
+            result.Torque = request.Torque;
+            result.EngineDisplacement = request.EngineDisplacement;
+            result.TankCapacity = request.TankCapacity;
 
-            return motorcycleList;
+            return _motorcycleRepository.GetAllMotorcycles();
         }
     }
 }
