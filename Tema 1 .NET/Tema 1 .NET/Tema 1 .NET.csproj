@@ -16,8 +16,6 @@
     <Folder Include="Dtos\" />
     <Folder Include="Enums\" />
     <Folder Include="Mapping\" />
-    <Folder Include="Database\" />
-    <Folder Include="Repositories\" />
   </ItemGroup>
 
 </Project>

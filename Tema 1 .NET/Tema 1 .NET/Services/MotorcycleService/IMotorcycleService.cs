@@ -7,7 +7,7 @@ namespace Tema_1_.NET.Services.MotorcycleService
         List<Motorcycle> GetAllMotorcycles();
         Motorcycle? GetMotorcycleById(int id);
         List<Motorcycle> AddMotorcycle(Motorcycle motorcycle);
-        List<Motorcycle>? UpdateHero(Motorcycle request);
+        List<Motorcycle>? UpdateMotorcycle(Motorcycle request);
         List<Motorcycle>? DeleteMotorcycle(int id);
     }
 }
